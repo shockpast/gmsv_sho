@@ -39,12 +39,7 @@ void hush::ivp_message(const char* templat, ...)
 
 void hush::initialize()
 {
-#if SYSTEM_IS_LINUX
-	// they are not '_srv' suffixed on x64, strange
 	SourceSDK::ModuleLoader vphysics("vphysics");
-#else
-	SourceSDK::ModuleLoader vphysics("vphysics");
-#endif
 
 	detour::Create(&detour_ivp_message, "ivp_message", vphysics.GetModule(), symbols::ivp_messageSym, (void*)hush::ivp_message, 0);
 }
