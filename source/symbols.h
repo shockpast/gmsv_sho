@@ -17,9 +17,9 @@ class Color;
 
 namespace symbols
 {
-    //---------------------------------------------------------------------------------
-    // Purpose: "hush" Symbols
-    //---------------------------------------------------------------------------------
-	typedef void (GMCOMMON_CALLING_CONVENTION* ivp_message)(const char* templat, ...);
-	extern const std::vector<Symbol> ivp_messageSym;
+  //---------------------------------------------------------------------------------
+  // Purpose: "hush" Symbols
+  //---------------------------------------------------------------------------------
+  typedef void (GMCOMMON_CALLING_CONVENTION* ivp_message)(const char* templat, ...);
+  extern const std::vector<Symbol> ivp_messageSym;
 }

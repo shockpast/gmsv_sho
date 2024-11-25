@@ -1,15 +1,16 @@
-development
-Bootil/projects/obj/
-Bootil/projects/release_x64_windows/
-Bootil/projects/release_x32_windows/
-Bootil/projects/release_x64_linux/
-Bootil/projects/release_x32_linux/
 **/.vs/
+**/.vscode/
+
+development
+
 source/modules/template.c++
 source/modules/32x/**
 source/modules/64x/**
 source/sourcesdk/tempshit
+
 projects
-premake5
-build_debug.sh
+
+# scripts
 build.sh
+build_debug.sh
+build_symbols.sh
