@@ -10,20 +10,40 @@
 #define MAX_MAKE_STRING_LEN 10000 // vphysics
 
 static Detouring::Hook detour_ivp_message;
-void hush::ivp_message(const char* templat, ...)
+void hook_ivp_message(const char* pMsgFormat, ...)
 {
-  if (strstr(templat, "do_constraint_system: Couldn't invert rot matrix!"))
+  if (strstr(pMsgFormat, "do_constraint_system: Couldn't invert rot matrix!"))
     return;
 
   va_list args;
-  va_start(args, templat);
+  va_start(args, pMsgFormat);
 
-  detour_ivp_message.GetTrampoline<symbols::ivp_message>()(templat, args);
+  detour_ivp_message.GetTrampoline<symbols::ivp_message>()(pMsgFormat, args);
+}
+
+static Detouring::Hook detour_ConMsg;
+void hook_ConMsg(const char* pMsgFormat, ...)
+{
+  if (strstr(pMsgFormat, "Forcing client reconnect (%i)"))
+    return;
+
+  va_list args;
+  va_start(args, pMsgFormat);
+
+  char buf[4096];
+  vsprintf(buf, pMsgFormat, args); // that is same logic that in libtier0.so ?
+
+  va_end(args);
+
+  // todo: putting just va_list seems to corrupt arguments in string...
+  detour_ConMsg.GetTrampoline<symbols::ConMsg>()(buf, args);
 }
 
 void hush::initialize()
 {
   SourceSDK::ModuleLoader vphysics("vphysics");
+  detour::Create(&detour_ivp_message, "ivp_message", vphysics.GetModule(), symbols::ivp_messageSym, (void*)hook_ivp_message, 0);
 
-  detour::Create(&detour_ivp_message, "ivp_message", vphysics.GetModule(), symbols::ivp_messageSym, (void*)hush::ivp_message, 0);
+  SourceSDK::ModuleLoader tier0("libtier0");
+  detour::Create(&detour_ConMsg, "ConMsg", tier0.GetModule(), symbols::ConMsgSym, (void*)hook_ConMsg, 0);
 }

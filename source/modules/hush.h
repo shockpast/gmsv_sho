@@ -8,7 +8,5 @@
 
 namespace hush
 {
-  void ivp_message(const char* templat, ...);
-
   void initialize();
 }

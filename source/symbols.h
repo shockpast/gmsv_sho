@@ -22,4 +22,7 @@ namespace symbols
   //---------------------------------------------------------------------------------
   typedef void (GMCOMMON_CALLING_CONVENTION* ivp_message)(const char* templat, ...);
   extern const std::vector<Symbol> ivp_messageSym;
+
+  typedef void (GMCOMMON_CALLING_CONVENTION* ConMsg)(const char* pMsgFormat, va_list args);
+  extern const std::vector<Symbol> ConMsgSym;
 }
