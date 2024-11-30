@@ -3,8 +3,12 @@
 #include <stdio.h>
 #include <regex>
 
+#include <GarrysMod/Lua/LuaInterface.h>
+
+#include "lua.h"
 #include "hush.h"
 #include "detour.h"
+#include "main.h"
 
 #define MAX_ERROR_BUFFER_LEN 10000 // vphysics
 #define MAX_MAKE_STRING_LEN 10000 // vphysics
@@ -18,7 +22,7 @@ void hook_ivp_message(const char* pMsgFormat, ...)
   va_list args;
   va_start(args, pMsgFormat);
 
-  detour_ivp_message.GetTrampoline<symbols::ivp_message>()(pMsgFormat, args);
+  detour_ivp_message.GetTrampoline<symbols::vphysics_ivp_message>()(pMsgFormat, args);
 }
 
 static Detouring::Hook detour_ConMsg;
@@ -36,14 +40,47 @@ void hook_ConMsg(const char* pMsgFormat, ...)
   va_end(args);
 
   // todo: putting just va_list seems to corrupt arguments in string...
-  detour_ConMsg.GetTrampoline<symbols::ConMsg>()(buf, args);
+  detour_ConMsg.GetTrampoline<symbols::libtier0_ConMsg>()(buf, args);
+}
+
+static Detouring::Hook detour_Warning;
+void hook_Warning(const char* pMsgFormat, ...)
+{
+  if (strstr(pMsgFormat, "%s[%i]:SetAbsOrigin( %f %f %f ): Ignoring unreasonable position.")) // ? this looks messy
+  {
+    va_list args;
+    va_start(args, pMsgFormat);
+
+    const char* entityClass = va_arg(args, const char*); // ?
+    int entityIndex = va_arg(args, int);
+
+    va_end(args);
+
+    lua::PushHook("sho:SetAbsOrigin"); // todo i need something unique and good looking
+    g_Lua->PushString(entityClass); // it's not needed, but i will just send it 😎
+    g_Lua->PushNumber(entityIndex);
+    g_Lua->PCall(3, 0, true);
+
+    return;
+  }
+
+  va_list args;
+  va_start(args, pMsgFormat);
+
+  char buf[4096];
+  vsprintf(buf, pMsgFormat, args);
+
+  va_end(args);
+
+  detour_Warning.GetTrampoline<symbols::libtier0_Warning>()(buf, args);
 }
 
 void hush::initialize()
 {
   SourceSDK::ModuleLoader vphysics("vphysics");
-  detour::Create(&detour_ivp_message, "ivp_message", vphysics.GetModule(), symbols::ivp_messageSym, (void*)hook_ivp_message, 0);
+  detour::Create(&detour_ivp_message, "ivp_message", vphysics.GetModule(), symbols::vphysics_ivp_messageSym, (void*)hook_ivp_message, 0);
 
   SourceSDK::ModuleLoader tier0("libtier0");
-  detour::Create(&detour_ConMsg, "ConMsg", tier0.GetModule(), symbols::ConMsgSym, (void*)hook_ConMsg, 0);
+  detour::Create(&detour_ConMsg, "ConMsg", tier0.GetModule(), symbols::libtier0_ConMsgSym, (void*)hook_ConMsg, 0);
+  detour::Create(&detour_Warning, "Warning", tier0.GetModule(), symbols::libtier0_WarningSym, (void*)hook_Warning, 0);
 }

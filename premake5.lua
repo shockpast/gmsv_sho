@@ -27,13 +27,13 @@ CreateWorkspace({ name = "sho", abi_compatible = false })
         IncludeSDKTier0()
         IncludeSDKTier1()
         --IncludeSDKTier3()
+        IncludeDetouring()
+        IncludeScanning()
+        --IncludeSteamAPI()
         --IncludeSDKMathlib()
         --IncludeSDKRaytrace()
         --IncludeSDKBitmap()
         --IncludeSDKVTF()
-        --IncludeSteamAPI()
-        IncludeDetouring()
-        IncludeScanning()
 
         files({
             [[source/modules/*.h]],

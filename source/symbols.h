@@ -18,11 +18,17 @@ class Color;
 namespace symbols
 {
   //---------------------------------------------------------------------------------
-  // Purpose: "hush" Symbols
+  // Purpose: vphysics Symbols
   //---------------------------------------------------------------------------------
-  typedef void (GMCOMMON_CALLING_CONVENTION* ivp_message)(const char* templat, ...);
-  extern const std::vector<Symbol> ivp_messageSym;
+  typedef void (GMCOMMON_CALLING_CONVENTION* vphysics_ivp_message)(const char* templat, va_list args);
+  extern const std::vector<Symbol> vphysics_ivp_messageSym;
 
-  typedef void (GMCOMMON_CALLING_CONVENTION* ConMsg)(const char* pMsgFormat, va_list args);
-  extern const std::vector<Symbol> ConMsgSym;
+  //---------------------------------------------------------------------------------
+  // Purpose: tier0 Symbols
+  //---------------------------------------------------------------------------------
+  typedef void (GMCOMMON_CALLING_CONVENTION* libtier0_ConMsg)(const char* pMsgFormat, va_list args);
+  extern const std::vector<Symbol> libtier0_ConMsgSym;
+
+  typedef void (GMCOMMON_CALLING_CONVENTION* libtier0_Warning)(const char* pMsgFormat, va_list args);
+  extern const std::vector<Symbol> libtier0_WarningSym;
 }
