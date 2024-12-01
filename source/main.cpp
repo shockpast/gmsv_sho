@@ -1,5 +1,4 @@
 ﻿#include <GarrysMod/Lua/Interface.h>
-#include <interfaces/interfaces.h>
 
 #include "main.h"
 #include "modules/hush.h"
