@@ -46,6 +46,9 @@ void hook_ConMsg(const char* pMsgFormat, ...)
 static Detouring::Hook detour_Warning;
 void hook_Warning(const char* pMsgFormat, ...)
 {
+  if (strstr(pMsgFormat, "Bad SetLocalOrigin(%f,%f,%f) on %s"))
+    return;
+
   if (strstr(pMsgFormat, "%s[%i]:SetAbsOrigin( %f %f %f ): Ignoring unreasonable position.")) // ? this looks messy
   {
     va_list args;
