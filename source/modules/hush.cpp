@@ -54,15 +54,14 @@ void hook_Warning(const char* pMsgFormat, ...)
     va_list args;
     va_start(args, pMsgFormat);
 
-    const char* entityClass = va_arg(args, const char*); // ?
+    const char* _entityClass = va_arg(args, const char*);
     int entityIndex = va_arg(args, int);
 
     va_end(args);
 
     lua::PushHook("sho:SetAbsOrigin"); // todo i need something unique and good looking
-    g_Lua->PushString(entityClass); // it's not needed, but i will just send it 😎
     g_Lua->PushNumber(entityIndex);
-    g_Lua->PCall(3, 0, true);
+    g_Lua->PCall(2, 0, true);
 
     return;
   }

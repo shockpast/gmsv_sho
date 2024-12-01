@@ -19,21 +19,21 @@ namespace symbols
   //---------------------------------------------------------------------------------
   const std::vector<Symbol> libtier0_ConMsgSym = {
     //
-    NULL_SYMBOL,
+    Symbol::FromName("ConMsg"),
     //
     Symbol::FromName("_Z6ConMsgPKcz")
   };
 
   const std::vector<Symbol> libtier0_WarningSym = {
     //
-    NULL_SYMBOL,
+    Symbol::FromName("Warning"),
     //
     Symbol::FromName("Warning")
   };
 
   const std::vector<Symbol> libtier0_MsgSym = {
     //
-    NULL_SYMBOL,
+    Symbol::FromName("Msg"),
     //
     Symbol::FromName("Msg")
   };
