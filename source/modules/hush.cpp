@@ -78,6 +78,22 @@ void hook_Warning(const char* pMsgFormat, ...)
   detour_Warning.GetTrampoline<symbols::libtier0_Warning>()(buf, args);
 }
 
+void hook_Msg(const char* pMsgFormat, ...)
+{
+  if (strstr(pMsgFormat, "Weapon spawning in solid!"))
+    return;
+
+  va_list args;
+  va_start(args, pMsgFormat);
+
+  char buf[4096];
+  vsprintf(buf, pMsgFormat, args);
+
+  va_end(args);
+
+  detour_Warning.GetTrampoline<symbols::libtier0_Msg>()(buf, args);
+}
+
 void hush::initialize()
 {
   SourceSDK::ModuleLoader vphysics("vphysics");

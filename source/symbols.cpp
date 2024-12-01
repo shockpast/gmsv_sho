@@ -27,7 +27,14 @@ namespace symbols
   const std::vector<Symbol> libtier0_WarningSym = {
     //
     NULL_SYMBOL,
-    // huh
+    //
     Symbol::FromName("Warning")
+  };
+
+  const std::vector<Symbol> libtier0_MsgSym = {
+    //
+    NULL_SYMBOL,
+    //
+    Symbol::FromName("Msg")
   };
 }

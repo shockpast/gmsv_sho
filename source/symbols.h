@@ -31,4 +31,7 @@ namespace symbols
 
   typedef void (GMCOMMON_CALLING_CONVENTION* libtier0_Warning)(const char* pMsgFormat, va_list args);
   extern const std::vector<Symbol> libtier0_WarningSym;
+
+  typedef void (GMCOMMON_CALLING_CONVENTION* libtier0_Msg)(const char* pMsgFormat, va_list args);
+  extern const std::vector<Symbol> libtier0_MsgSym;
 }
