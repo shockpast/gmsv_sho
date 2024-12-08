@@ -51,7 +51,7 @@ void hook_Warning(const char* pMsgFormat, ...)
     va_list args;
     va_start(args, pMsgFormat);
 
-    const char* _entityClass = va_arg(args, const char*);
+    va_arg(args, const char*);
     int entityIndex = va_arg(args, int);
 
     va_end(args);

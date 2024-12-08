@@ -3,7 +3,6 @@
 #include <mathlib/vector.h>
 #include <vphysics_interface.h>
 
-#include "helpers/memory.h"
 #include "vphysics.h"
 #include "symbols.h"
 #include "detour.h"
