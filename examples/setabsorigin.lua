@@ -1,4 +1,4 @@
-hook.Add("sho:SetAbsOrigin", "t", function(class, idx)
+hook.Add("sho:SetAbsOrigin", "t", function(idx)
   local ent = Entity(idx)
   if not IsValid(ent) then return end
   if ent:IsPlayer() then

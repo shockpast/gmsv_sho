@@ -3,6 +3,7 @@
 
 #include <vector>
 
+class Vector;
 class Color;
 
 #if defined SYSTEM_WINDOWS
@@ -22,6 +23,12 @@ namespace symbols
   //---------------------------------------------------------------------------------
   typedef void (GMCOMMON_CALLING_CONVENTION* vphysics_ivp_message)(const char* templat, va_list args);
   extern const std::vector<Symbol> vphysics_ivp_messageSym;
+
+  typedef void (GMCOMMON_CALLING_CONVENTION* vphysics_CPhysicsEnvironment_Simulate)(void* _this, float deltaTime);
+  extern const std::vector<Symbol> vphysics_CPhysicsEnvironment_SimulateSym;
+
+  typedef void (GMCOMMON_CALLING_CONVENTION* vphysics_CPhysicsEnvrionment_SetGravity)(void* _this, const Vector& gravity);
+  extern const std::vector<Symbol> vphysics_CPhysicsEnvrionment_SetGravitySym;
 
   //---------------------------------------------------------------------------------
   // Purpose: tier0 Symbols

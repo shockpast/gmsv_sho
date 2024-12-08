@@ -1,13 +1,15 @@
 ﻿#include <GarrysMod/Lua/Interface.h>
 
-#include "main.h"
 #include "modules/hush.h"
+#include "modules/vphysics.h"
+#include "main.h"
 
 GMOD_MODULE_OPEN()
 {
   g_Lua = LUA;
 
   hush::initialize();
+  vphysics::initialize();
 
   return 0;
 }

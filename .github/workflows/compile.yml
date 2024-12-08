@@ -6,7 +6,7 @@ jobs:
   build:
     uses: RaphaelIT7/gmod-common-module-base/.github/workflows/compile.yml@workflow
     with:
-      BUILD_64x: "true"
+      BUILD_64x: "false"
       BUILD_32x: "true"
       BUILD_WINDOWS: "false"
       PROJECT_NAME: "sho"

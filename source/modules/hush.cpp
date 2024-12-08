@@ -10,9 +10,6 @@
 #include "detour.h"
 #include "main.h"
 
-#define MAX_ERROR_BUFFER_LEN 10000 // vphysics
-#define MAX_MAKE_STRING_LEN 10000 // vphysics
-
 static Detouring::Hook detour_ivp_message;
 void hook_ivp_message(const char* pMsgFormat, ...)
 {
@@ -101,4 +98,6 @@ void hush::initialize()
   SourceSDK::ModuleLoader tier0("libtier0");
   detour::Create(&detour_ConMsg, "ConMsg", tier0.GetModule(), symbols::libtier0_ConMsgSym, (void*)hook_ConMsg, 0);
   detour::Create(&detour_Warning, "Warning", tier0.GetModule(), symbols::libtier0_WarningSym, (void*)hook_Warning, 0);
+
+  Msg("initialized 'hush' module\n");
 }

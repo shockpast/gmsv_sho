@@ -1,0 +1,4 @@
+namespace vphysics
+{
+  void initialize();
+}

@@ -37,5 +37,5 @@ CreateWorkspace({ name = "sho", abi_compatible = false })
 
         files({
             [[source/modules/*.h]],
-            [[source/modules/*.cpp]],
+            [[source/modules/*.cpp]]
         })

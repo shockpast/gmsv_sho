@@ -3,14 +3,7 @@
 
 development
 
-source/modules/template.c++
-source/modules/32x/**
-source/modules/64x/**
-source/sourcesdk/tempshit
-
 projects
 
-# scripts
 build.sh
-build_debug.sh
-build_symbols.sh
+generate.sh

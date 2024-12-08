@@ -14,6 +14,20 @@ namespace symbols
     Symbol::FromSignature("\x55\x48\x89\xE5\x41\x54\x53\x48\x81\xEC****\x84\xC0\x48\x89\xB5****\x48\x89\x95****\x48\x89\x8D****\x4C\x89\x85****\x4C\x89\x8D****\x74*\x0F\x29\x85****\x0F\x29\x4D*\x0F\x29\x55*\x0F\x29\x5D*\x0F\x29\x65*\x0F\x29\x6D*\x0F\x29\x75*\x0F\x29\x7D*\x48\x8D\x9D****\x31\xF6\x49\x89\xFC\x64\x48\x8B\x04\x25****\x48\x89\x85****\x31\xC0\xBA****\x48\x89\xDF\xE8****\x4C\x8D\x8D")
   };
 
+  const std::vector<Symbol> vphysics_CPhysicsEnvironment_SimulateSym = {
+    //
+    Symbol::FromName("_ZN19CPhysicsEnvironment8SimulateEf"),
+    // todo
+    NULL_SYMBOL,
+  };
+
+  const std::vector<Symbol> vphysics_CPhysicsEnvrionment_SetGravitySym = {
+    //
+	  Symbol::FromName("_ZN19CPhysicsEnvironment10SetGravityERK6Vector"),
+    // todo
+	  NULL_SYMBOL
+  };
+
   //---------------------------------------------------------------------------------
   // Purpose: tier0 Symbols
   //---------------------------------------------------------------------------------
