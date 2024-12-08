@@ -21,13 +21,6 @@ namespace symbols
     NULL_SYMBOL,
   };
 
-  const std::vector<Symbol> vphysics_CPhysicsEnvrionment_SetGravitySym = {
-    //
-	  Symbol::FromName("_ZN19CPhysicsEnvironment10SetGravityERK6Vector"),
-    // todo
-	  NULL_SYMBOL
-  };
-
   //---------------------------------------------------------------------------------
   // Purpose: tier0 Symbols
   //---------------------------------------------------------------------------------

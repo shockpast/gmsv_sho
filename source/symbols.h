@@ -27,9 +27,6 @@ namespace symbols
   typedef void (GMCOMMON_CALLING_CONVENTION* vphysics_CPhysicsEnvironment_Simulate)(void* _this, float deltaTime);
   extern const std::vector<Symbol> vphysics_CPhysicsEnvironment_SimulateSym;
 
-  typedef void (GMCOMMON_CALLING_CONVENTION* vphysics_CPhysicsEnvrionment_SetGravity)(void* _this, const Vector& gravity);
-  extern const std::vector<Symbol> vphysics_CPhysicsEnvrionment_SetGravitySym;
-
   //---------------------------------------------------------------------------------
   // Purpose: tier0 Symbols
   //---------------------------------------------------------------------------------
