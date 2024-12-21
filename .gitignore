@@ -6,4 +6,5 @@ development
 projects
 
 build.sh
+build_debug.sh
 generate.sh
